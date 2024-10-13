@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptix - Encrypt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #BDC3C7;
+            color: #ECF0F1;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #2C3E50;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: #1ABC9C;
+            margin: 0;
+        }
+        section {
+            display: flex;
+            justify-content: center;
+            padding: 50px;
+        }
+        .encrypt-container {
+            background-color: #34495E;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .encrypt-container input, .encrypt-container button {
+            padding: 10px;
+            margin: 10px 0;
+            width: 300px;
+        }
+        .encrypt-container button {
+            background-color: #1ABC9C;
+            color: #ECF0F1;
+            border: none;
+            cursor: pointer;
+        }
+        footer {
+            background-color: #2C3E50;
+            text-align: center;
+            padding: 10px;
+        }
+        footer p {
+            color: #95A5A6;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Encrypt Your Text with Cryptix</h1>
+    </header>
+    <section>
+        <div class="encrypt-container">
+            <h2>Enter Text to Encrypt</h2>
+            <input type="text" id="plainText" placeholder="Enter text here">
+            <input type="password" id="password" placeholder="Enter a password">
+            <button onclick="encryptText()">Encrypt</button>
+            <p id="encryptedOutput"></p>
+        </div>
+    </section>
+    <footer>
+        <p>© 2024 Cryptix - All rights reserved.</p>
+    </footer>
+    <script>
+        function encryptText() {
+            var plainText = document.getElementById("plainText").value;
+            var password = document.getElementById("password").value;
+            if (!plainText || !password) {
+                alert("Please enter both text and a password.");
+                return;
+            }
+            var encrypted = CryptoJS.AES.encrypt(plainText, password).toString();
+            document.getElementById("encryptedOutput").textContent = encrypted;
+            download("encrypted.txt", encrypted);
+        }
+
+        function download(filename, text) {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+    </script>
+</body>
+</html>
