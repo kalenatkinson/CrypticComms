@@ -31,7 +31,7 @@
             margin-top: 40px;
             text-align: center;
         }
-        .encrypt-container input {
+        .encrypt-container input, .encrypt-container button {
             margin-bottom: 20px;
         }
         .back-button {
@@ -66,6 +66,9 @@
             <input type="password" id="password" class="form-control" placeholder="Enter a password">
             <button class="btn btn-primary mt-3" onclick="encryptText()">Encrypt</button>
             <p id="encryptedOutput" class="mt-4"></p>
+            <!-- Options to copy the text or download the encrypted message as a file -->
+            <button class="btn btn-outline-light mt-2" onclick="copyToClipboard()">Copy Encrypted Text</button>
+            <button class="btn btn-outline-light mt-2" onclick="downloadFile()">Download as .txt</button>
             <a href="index.html" class="back-button">Back to Home</a>
         </div>
     </section>
@@ -84,6 +87,30 @@
             }
             var encrypted = CryptoJS.AES.encrypt(plainText, password).toString();
             document.getElementById("encryptedOutput").textContent = encrypted;
+        }
+
+        function copyToClipboard() {
+            var encryptedText = document.getElementById("encryptedOutput").textContent;
+            if (encryptedText) {
+                navigator.clipboard.writeText(encryptedText).then(function() {
+                    alert("Encrypted text copied to clipboard.");
+                });
+            } else {
+                alert("No encrypted text to copy.");
+            }
+        }
+
+        function downloadFile() {
+            var encryptedText = document.getElementById("encryptedOutput").textContent;
+            if (encryptedText) {
+                var blob = new Blob([encryptedText], { type: "text/plain" });
+                var link = document.createElement("a");
+                link.href = URL.createObjectURL(blob);
+                link.download = "encrypted.txt";
+                link.click();
+            } else {
+                alert("No encrypted text to download.");
+            }
         }
     </script>
 </body>
