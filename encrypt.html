@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cryptix - Encrypt</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <title>Cryptic Comms - Encrypt</title>
+    <!-- Google Fonts for Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <!-- Add CryptoJS for Real Encryption -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <!-- Styling -->
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #BDC3C7;
-            color: #ECF0F1;
+            font-family: 'Poppins', sans-serif;
+            background-color: #F5F5F5;
+            color: #333;
             margin: 0;
             padding: 0;
         }
         header {
-            background-color: #2C3E50;
+            background-color: #3D5A80;
             padding: 20px;
             text-align: center;
         }
         header h1 {
-            font-family: 'Montserrat', sans-serif;
-            color: #1ABC9C;
+            font-size: 2.5rem;
+            color: #98C1D9;
             margin: 0;
         }
         section {
@@ -30,10 +33,11 @@
             padding: 50px;
         }
         .encrypt-container {
-            background-color: #34495E;
+            background-color: #E0FBFC;
             padding: 30px;
-            border-radius: 10px;
+            border-radius: 12px;
             text-align: center;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
         }
         .encrypt-container input, .encrypt-container button {
             padding: 10px;
@@ -41,24 +45,41 @@
             width: 300px;
         }
         .encrypt-container button {
-            background-color: #1ABC9C;
-            color: #ECF0F1;
+            background-color: #98C1D9;
+            color: white;
             border: none;
             cursor: pointer;
+            border-radius: 5px;
+        }
+        .encrypt-container button:hover {
+            background-color: #EE6C4D;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #98C1D9;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .back-button:hover {
+            background-color: #EE6C4D;
         }
         footer {
-            background-color: #2C3E50;
+            background-color: #3D5A80;
             text-align: center;
             padding: 10px;
         }
         footer p {
-            color: #95A5A6;
+            color: #E0FBFC;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Encrypt Your Text with Cryptix</h1>
+        <h1>Encrypt Your Text with Cryptic Comms</h1>
     </header>
     <section>
         <div class="encrypt-container">
@@ -67,10 +88,11 @@
             <input type="password" id="password" placeholder="Enter a password">
             <button onclick="encryptText()">Encrypt</button>
             <p id="encryptedOutput"></p>
+            <a href="index.html" class="back-button">Back to Home</a>
         </div>
     </section>
     <footer>
-        <p>© 2024 Cryptix - All rights reserved.</p>
+        <p>© 2024 Cryptic Comms - All rights reserved.</p>
     </footer>
     <script>
         function encryptText() {
