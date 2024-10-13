@@ -23,10 +23,6 @@
             padding: 80px 20px;
             text-align: center;
         }
-        header h1 {
-            font-size: 3rem;
-            font-weight: 500;
-        }
         .decrypt-container {
             background-color: #1e3a56;
             padding: 40px;
@@ -35,7 +31,7 @@
             margin-top: 40px;
             text-align: center;
         }
-        .decrypt-container textarea, .decrypt-container input {
+        .decrypt-container input, .decrypt-container textarea {
             margin-bottom: 20px;
         }
         .back-button {
@@ -65,8 +61,9 @@
     </header>
     <section class="container">
         <div class="decrypt-container">
-            <h2>Enter Encrypted Text to Decrypt</h2>
+            <h2>Enter Encrypted Text or Upload a File</h2>
             <textarea id="encryptedText" class="form-control" placeholder="Paste encrypted text here"></textarea>
+            <input type="file" id="fileInput" class="form-control">
             <input type="password" id="password" class="form-control" placeholder="Enter the password">
             <button class="btn btn-primary mt-3" onclick="decryptText()">Decrypt</button>
             <p id="decryptedOutput" class="mt-4"></p>
@@ -80,10 +77,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script>
         function decryptText() {
-            var encryptedText = document.getElementById("encryptedText").value;
             var password = document.getElementById("password").value;
-            if (!encryptedText || !password) {
-                alert("Please enter both the encrypted text and password.");
+            var encryptedText = document.getElementById("encryptedText").value;
+
+            // Handle file input
+            var fileInput = document.getElementById("fileInput");
+            if (fileInput.files.length > 0) {
+                var file = fileInput.files[0];
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    encryptedText = e.target.result;
+                    decryptWithPassword(encryptedText, password);
+                };
+                reader.readAsText(file);
+            } else if (encryptedText) {
+                decryptWithPassword(encryptedText, password);
+            } else {
+                alert("Please enter the encrypted text or upload a file.");
+            }
+        }
+
+        function decryptWithPassword(encryptedText, password) {
+            if (!password) {
+                alert("Please enter a password.");
                 return;
             }
             try {
