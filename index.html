@@ -26,22 +26,38 @@
         header h1 {
             font-size: 3rem;
             font-weight: 500;
+            color: #fffb00; /* Changed color to bright yellow to stand out against background */
+        }
+        nav {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
         }
         nav a {
             color: #9fb3c8;
-            margin: 0 15px;
             text-decoration: none;
             font-weight: bold;
         }
         nav a:hover {
             color: #D9E2EC;
         }
-        .features {
+        .container-explanation {
             background-color: #1e3a56;
             padding: 50px;
             border-radius: 15px;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
             margin-top: 40px;
+            text-align: center;
+        }
+        .container-explanation h2 {
+            font-size: 2rem;
+            color: #fffb00;
+        }
+        .container-explanation p {
+            color: #D9E2EC;
+            font-size: 1.2rem;
+            line-height: 1.6;
         }
         footer {
             background-color: #1e3a56;
@@ -55,16 +71,21 @@
     <header>
         <h1>Cryptic Comms - Secure Your Files</h1>
     </header>
-    <nav class="text-center mt-4">
-        <a href="#features" class="btn btn-link">Features</a>
-        <a href="encrypt.html" class="btn btn-link">Encrypt</a>
-        <a href="decrypt.html" class="btn btn-link">Decrypt</a>
+    <nav>
+        <a href="encrypt.html" class="btn btn-outline-light">Encrypt</a>
+        <a href="decrypt.html" class="btn btn-outline-light">Decrypt</a>
     </nav>
-    <section class="container text-center">
-        <div class="features">
-            <h2>Encrypt and Decrypt Files Securely</h2>
-            <p>Cryptic Comms provides you with easy-to-use tools to encrypt and decrypt your files with the utmost security. Enjoy a seamless experience and peace of mind when it comes to protecting your data.</p>
-        </div>
+    <section class="container container-explanation">
+        <h2>How Cryptic Comms Works</h2>
+        <p>
+            Cryptic Comms provides a secure and easy-to-use platform for encrypting and decrypting text using AES encryption. Simply go to the Encrypt page to enter your text and a password to create a secure encrypted message.
+        </p>
+        <p>
+            On the Decrypt page, you can paste an encrypted message and provide the correct password to unlock it. This ensures your sensitive information stays private and protected.
+        </p>
+        <p>
+            Using cutting-edge encryption technology, Cryptic Comms ensures that your files and messages remain safe from unauthorized access.
+        </p>
     </section>
     <footer>
         <p>© 2024 Cryptic Comms - All rights reserved.</p>
